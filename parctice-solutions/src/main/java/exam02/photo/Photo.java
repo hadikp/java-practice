@@ -7,10 +7,11 @@ public class Photo implements Qualified {
 
     public Photo(String name) {
         this.name = name;
+        this.quality = Quality.NO_STAR;
     }
 
     public Photo(String name, Quality quality) {
-        this(name = name);
+        this.name = name;
         this.quality = quality;
     }
 
@@ -26,5 +27,10 @@ public class Photo implements Qualified {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return name + ", " + quality;
     }
 }

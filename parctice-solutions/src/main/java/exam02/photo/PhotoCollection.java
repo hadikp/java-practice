@@ -7,25 +7,33 @@ public class PhotoCollection {
 
     private List<Photo> photos = new ArrayList<>();
 
-    public void addPhoto(String ... photo) {
+    public void addPhoto(String... photo) {
         for (String st: photo) {
             photos.add(new Photo(st));
         }
     }
 
     public void starPhoto(String photoName, Quality quality) {
+        boolean found = true;
         for (Photo p: photos) {
             if (p.getName().equals(photoName)) {
                 p.setQuality(quality);
-            } else {
-                throw new PhotoNotFoundException("Nincs ilyen foto!");
+                found = false;
             }
+
+        }
+        if (found) {
+            throw new PhotoNotFoundException("Nincs ilyen foto!");
         }
     }
 
     public int numberOfStars() {
-        //return photos.stream().mapToInt(Photo::getQuality).sum(); //összesen mennyi csillag van
-        return 11;
+        int sum = 0;
+        return photos.stream().mapToInt(m -> m.getQuality().getNumber()).sum(); //összesen mennyi csillag van
+        /*for (Photo p: photos) {
+            sum += p.getQuality().getNumber();
+        }
+        return sum;*/
     }
 
     public List<Photo> getPhotos() {
