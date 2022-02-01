@@ -26,13 +26,13 @@ class movieTheatresServiceTest {
     void testReadFromFile() {
 
         assertEquals(3, mvs.getShows().keySet().size());
-        assertEquals(List.of("Puskin", "Duna Plaza", "WestEnd"), new ArrayList<>(mvs.getShows().keySet()));
+        assertEquals(List.of("WestEnd", "Duna Plaza", "Puskin"), new ArrayList<>(mvs.getShows().keySet()));
         assertEquals(List.of("Paw Petrol", "Lord Of The Rings"), mvs.getShows().get("Puskin").stream().map(Movie::getTitle).toList());
     }
 
     @Test
     void testFindMovie() {
-        assertEquals(List.of("Duna Plaza", "WestEnd"), mvs.findMovie("Star Wars"));
+        assertEquals(List.of("WestEnd", "Duna Plaza"), mvs.findMovie("Star Wars"));
         assertTrue(mvs.findMovie("Indinana Jones").isEmpty());
     }
 
@@ -46,12 +46,4 @@ class movieTheatresServiceTest {
     void testFindLatestShowWithWrongName(){
         assertThrows(IllegalArgumentException.class,()->mvs.findLatestShow("Indiana Jones"));
     }
-
-    @Test
-    void testMakeMap() {
-        //mvs.readFromFile(Path.of("src/test/resources/moviesintheaters.txt"));
-        System.out.println(mvs.findLatestShow("Paw Petrol"));
-
-    }
-
 }
