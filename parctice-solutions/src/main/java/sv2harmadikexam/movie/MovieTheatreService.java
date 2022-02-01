@@ -10,8 +10,9 @@ public class MovieTheatreService {
 
     private Map<String, List<Movie>> shows = new HashMap<>();
 
-    public void makeMap(Path path) {
-        List<String> readFile = readFromFile(path);
+
+    public void readFromFile(Path path) {
+        List<String> readFile = readFile(path);
 
         for (String st: readFile) {
             String[] stSplit = st.split("-");
@@ -30,12 +31,11 @@ public class MovieTheatreService {
                 value.add(new Movie(title, time));
                 shows.put(cinema, value);
             }
-            //List<Movie> movieListOrdered = movieList.stream().sorted(Comparator.comparing(Movie::getStartTime)).toList();
-            // shows.put(theatre, movieListOrdered);
         }
+        sortListMap();
     }
 
-    public List<String> readFromFile(Path path) {
+    private List<String> readFile(Path path) {
         try {
             return Files.readAllLines(path);
         }
@@ -44,21 +44,48 @@ public class MovieTheatreService {
         }
     }
 
+    public void sortListMap() {
+        for (Map.Entry<String, List<Movie>> m: shows.entrySet()) {
+            List<Movie> value = m.getValue();
+            List<Movie> movieListOrdered = value.stream().sorted(Comparator.comparing(Movie::getStartTime)).toList();
+            shows.put(m.getKey(), movieListOrdered);
+        }
+    }
+
     public List<String> findMovie(String title) {
         List<String> result = new ArrayList<>();
+        for (Map.Entry<String, List<Movie>> m: shows.entrySet()) {
+            boolean isTitle = isTitle(title, m);
+            if (isTitle) {
+                result.add(m.getKey());
+            }
+        }
         return result;
     }
 
+    private boolean isTitle(String title, Map.Entry<String, List<Movie>> m) {
+        boolean isTitle = m.getValue().stream().anyMatch(f -> f.getTitle().equals(title));
+        return isTitle;
+    }
+
     public LocalTime findLatestShow(String title) {
+        LocalTime latest = LocalTime.of(0,0);
         for (Map.Entry<String, List<Movie>> m: shows.entrySet()) {
             List<Movie> value = m.getValue();
-            if (value.contains(title)) {
-                for (Movie mk: value) {
-                    System.out.println(mk);
+            for (Movie mk: value) {
+                if (mk.getTitle().equals(title)) {
+                   LocalTime l = mk.getStartTime();
+                    if (latest.isBefore(l)) {
+                        latest = l;
+                    }
                 }
             }
+
         }
-        return null;
+        if (latest.equals(LocalTime.of(0,0))) {
+            throw new IllegalArgumentException("Can't find movie!");
+        }
+        return latest;
     }
 
     public Map<String, List<Movie>> getShows() {
