@@ -28,9 +28,9 @@ public class UserValidator { //week1125
                 throw new IllegalArgumentException("A felhasználó sem lehet null!");
             }
             System.out.println(u);
-            if (u.getName() == null || u.getName().isBlank()) {
+           /* if (u.getName() == null || u.getName().isBlank()) {
                 throw new IllegalArgumentException("A felhasználó neve nem lehet üres!");
-            }
+            }*/
         }
     }
 

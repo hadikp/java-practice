@@ -12,7 +12,7 @@ public class Histogram {
         List<String> fileRead = readFile(path);
         for (String st: fileRead) {
             int numberStars = Integer.parseInt(st);
-            sb.append("*".repeat(numberStars));
+            //sb.append("*".repeat(numberStars));
             sb.append("\n");
         }
         return sb.toString();

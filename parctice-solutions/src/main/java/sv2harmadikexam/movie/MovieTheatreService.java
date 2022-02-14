@@ -47,8 +47,8 @@ public class MovieTheatreService {
     public void sortListMap() {
         for (Map.Entry<String, List<Movie>> m: shows.entrySet()) {
             List<Movie> value = m.getValue();
-            List<Movie> movieListOrdered = value.stream().sorted(Comparator.comparing(Movie::getStartTime)).toList();
-            shows.put(m.getKey(), movieListOrdered);
+            //List<Movie> movieListOrdered = value.stream().sorted(Comparator.comparing(Movie::getStartTime)).toList();
+            //shows.put(m.getKey(), movieListOrdered);
         }
     }
 
