@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ArmstrongNumbersTest {
 
-    //ArmstrongNumbers armstrongNumbers = new ArmstrongNumbers();
 
     @Test
     void testIsArmstrongNumber() {
@@ -16,19 +15,15 @@ class ArmstrongNumbersTest {
         assertTrue(armstrongNumbers.isArmstrongNumber(9));
         assertTrue(armstrongNumbers.isArmstrongNumber(153));
         assertTrue(armstrongNumbers.isArmstrongNumber(370));
-        //assertTrue(armstrongNumbers.isArmstrongNumber(472335975));
-        //assertTrue(armstrongNumbers.isArmstrongNumber(534494836));
+        assertTrue(armstrongNumbers.isArmstrongNumber(472335975));
+        assertTrue(armstrongNumbers.isArmstrongNumber(534494836));
 
         assertFalse(armstrongNumbers.isArmstrongNumber(10));
-        //assertFalse(armstrongNumbers.isArmstrongNumber(672537621));
+        assertFalse(armstrongNumbers.isArmstrongNumber(672537621));
         assertFalse(armstrongNumbers.isArmstrongNumber(154));
 
     }
 
-    @Test
-    void test() {
-       // armstrongNumbers.isArmstrongNumber(9);
-    }
 
     @Test
     void testIsArmstrongNumberWithNegativeValue() {
