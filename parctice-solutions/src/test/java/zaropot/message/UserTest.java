@@ -9,11 +9,11 @@ class UserTest {
     @Test
     void createUserTest(){
         User user = new User("johndoe");
-        assertEquals("johndoe",user.getUsername());
+        assertEquals("johndoe",user.getUserName());
 
         user = new User(1L, "johndoe");
         assertEquals(1L, user.getId());
-        assertEquals("johndoe",user.getUsername());
+        assertEquals("johndoe",user.getUserName());
     }
 
 }
