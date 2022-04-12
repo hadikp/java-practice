@@ -1,0 +1,1 @@
+create table product (id bigint not null auto_increment, name varchar(50), stock int, price double , primary key (id))
