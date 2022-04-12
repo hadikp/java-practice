@@ -1,0 +1,1 @@
+create table order (id bigint not null auto_increment, user_id bigint, order_date date, primary key (id))

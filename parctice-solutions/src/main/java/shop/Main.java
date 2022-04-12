@@ -12,8 +12,8 @@ public class Main {
         MariaDbDataSource dataSource = new MariaDbDataSource();
         try {
             dataSource.setUrl("jdbc:mariadb://localhost:3306/shop?useUnicode=true");
-            dataSource.setUser("shop");
-            dataSource.setPassword("shop");
+            dataSource.setUser("shops");
+            dataSource.setPassword("shops");
         } catch (SQLException sqe) {
             throw new IllegalStateException("Cannot reach DataBase!", sqe);
         }
