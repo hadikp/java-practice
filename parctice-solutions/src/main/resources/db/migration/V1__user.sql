@@ -1,1 +1,1 @@
-create table user (id bigint not null auto_increment, name varchar(250), email varchar(250), password varchar(250), primary key (id))
+create table users(id bigint auto_increment, name varchar(255), email varchar(250), password varchar(250), constraint pk_users primary key(id));

@@ -3,7 +3,9 @@ package shop;
 import org.flywaydb.core.Flyway;
 import org.mariadb.jdbc.MariaDbDataSource;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class Main {
 
@@ -19,10 +21,11 @@ public class Main {
         }
 
         Flyway flyway = Flyway.configure().dataSource(dataSource).load();
-        flyway.clean();
+        //flyway.clean();
         flyway.migrate();
 
-        UserDao userDao = new UserDao(dataSource);
+        OrderDao orderDao = new OrderDao(dataSource);
+        orderDao.insertOrder(11, LocalDate.of(2022, 02, 11));
 
     }
 }
